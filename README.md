@@ -35,6 +35,7 @@ def lookup_wallet_name(wallet_name, currency='btc', wns_base=WNS_URL_BASE):
 https://github.com/blockcypher/blockcypher-python
 
 ```
+
 ```
 
 ```
