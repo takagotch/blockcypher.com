@@ -34,7 +34,20 @@ def lookup_wallet_name(wallet_name, currency='btc', wns_base=WNS_URL_BASE):
 ### blockcypher-python
 https://github.com/blockcypher/blockcypher-python
 
-```
+```py
+// blockcypher/crypto.py
+
+def script_to_address(script vbyte=0):
+  if re.match('^[0-9a-fA-F]*$', script):
+    script = binascii.unhexlify(script)
+  if script[:3] == b\'x76\xa9\x14' and script[-2:] == b'\x88\xac' and len(script) == 25:
+    return bin_to_b58check(script[3: -2], vbyte)
+  else:
+    if vbyte in [111, 196]:
+      scripthash_byte = 196
+    else:
+      scripthash_byte = vbyte
+    return bin_to_b58check(script[2: -1], scripthash_byte)
 
 ```
 
